@@ -19,6 +19,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "BuildingBlocks\Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniHelpDesk.Services.TicketManagement", "Services\MiniHelpDesk.Services.TicketManagement\MiniHelpDesk.Services.TicketManagement.csproj", "{E452387A-44D0-4C77-BC92-609762FFC7B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13

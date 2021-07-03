@@ -52,10 +52,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         [HttpGet(Name = "GetTickets")]
         public async Task<IActionResult> GetTicketsAsync([FromQuery]TicketsResourceParameters ticketsResourceParameters)
         {
-            var result = JsonSerializer.Serialize(new
-            {
-                warningMessage = "You have been warned..."
-            });
+            
 
             if (!_propertyMappingService.ValidMappingExistsFor<TicketDto, Ticket>(ticketsResourceParameters.OrderBy))
             {
@@ -93,6 +90,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         [HttpGet("{id}", Name = "GetTicket")]
         public async Task<IActionResult> GetTicketAsync(int Id, [FromQuery] string fields)
         {
+            return Ok();
 
             if (!_typeHelperService.TypeHasProperties<TicketDto>(fields))
             {

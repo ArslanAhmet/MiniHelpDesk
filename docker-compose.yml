@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+ minihelpdesk:
+  build:
+   context: .
+  image: ledexsoftware/minihelpdesk:build
+  ports: 
+   - "8080:80"
+ mail:
+  image: mailhog/mailhog
+  ports: 
+    - "8025:8025"
+  #  - "1025:1025"
+ #db:
+#  image: postgres
+#  restart: always
+  #environment:
+   #POSTGRES_DB: AgileCoach
+   #POSTGRES_PASSWORD: abcd.1234
+  #volumes:
+   # - "pgdata:/var/lib/postgresql/data"
+  #ports:
+   # - 5433:5432
+#volumes:
+# pgdata:

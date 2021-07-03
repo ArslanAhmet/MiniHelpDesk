@@ -120,7 +120,7 @@ namespace MiniHelpDesk.Services.TicketManagement
                 });
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
