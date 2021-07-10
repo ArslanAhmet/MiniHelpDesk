@@ -24,6 +24,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registry", "Registry", "{701879EA-0B9E-45EE-A552-3AD2152AF3F1}"
+	ProjectSection(SolutionItems) = preProject
+		BuildingBlocks\Registry\docker-compose.yml = BuildingBlocks\Registry\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamCity", "TeamCity", "{10CE9F15-5D4A-4E80-9355-A8C0C942404E}"
+	ProjectSection(SolutionItems) = preProject
+		BuildingBlocks\TeamCity\docker-compose.yml = BuildingBlocks\TeamCity\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13
@@ -65,6 +75,8 @@ Global
 		{51E7930C-B781-4222-88EF-DE4088451EA6} = {D990BE75-8F6D-4174-B177-562BA24606C2}
 		{78A09CAB-129D-44EB-8C07-99C643A9B99D} = {D990BE75-8F6D-4174-B177-562BA24606C2}
 		{E452387A-44D0-4C77-BC92-609762FFC7B0} = {FF22DBC7-14C5-409F-9114-6FACEFC2A376}
+		{701879EA-0B9E-45EE-A552-3AD2152AF3F1} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
+		{10CE9F15-5D4A-4E80-9355-A8C0C942404E} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E25A7C03-660F-4E9F-AB99-61391AD9C0AB}

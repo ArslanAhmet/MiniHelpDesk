@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+ ledexregistry:
+  image: registry:2.7.1
+  volumes:
+   - registry:/var/lib/registry
+  ports:
+   - "55000:5000" 
+  restart: unless-stopped
+volumes:
+   registry:
