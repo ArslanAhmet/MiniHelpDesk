@@ -34,6 +34,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamCity", "TeamCity", "{10
 		BuildingBlocks\TeamCity\docker-compose.yml = BuildingBlocks\TeamCity\docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED199D74-A29B-445B-BADC-B74BF98E0C55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A2275702-D22D-457B-8D15-0E3BA2A4EEBA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13
@@ -64,6 +68,10 @@ Global
 		{E452387A-44D0-4C77-BC92-609762FFC7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E452387A-44D0-4C77-BC92-609762FFC7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E452387A-44D0-4C77-BC92-609762FFC7B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2275702-D22D-457B-8D15-0E3BA2A4EEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2275702-D22D-457B-8D15-0E3BA2A4EEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2275702-D22D-457B-8D15-0E3BA2A4EEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2275702-D22D-457B-8D15-0E3BA2A4EEBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,7 @@ Global
 		{E452387A-44D0-4C77-BC92-609762FFC7B0} = {FF22DBC7-14C5-409F-9114-6FACEFC2A376}
 		{701879EA-0B9E-45EE-A552-3AD2152AF3F1} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
 		{10CE9F15-5D4A-4E80-9355-A8C0C942404E} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
+		{A2275702-D22D-457B-8D15-0E3BA2A4EEBA} = {ED199D74-A29B-445B-BADC-B74BF98E0C55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E25A7C03-660F-4E9F-AB99-61391AD9C0AB}
