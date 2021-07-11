@@ -26,4 +26,6 @@ RUN dotnet publish "Services/MiniHelpDesk.Services.TicketManagement/MiniHelpDesk
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 
 COPY --from=build-env /publish /publish
 WORKDIR /publish
+
+USER 1001
 ENTRYPOINT ["dotnet","MiniHelpDesk.Services.TicketManagement.dll"]
