@@ -17,6 +17,7 @@ RUN dotnet restore "UnitTests/UnitTests.csproj"
 COPY . .
 
 #test 
+ENV TEAMCITY_PROJECT_NAME=fake
 RUN dotnet test "UnitTests/UnitTests.csproj"
 
 #publish
@@ -27,5 +28,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 COPY --from=build-env /publish /publish
 WORKDIR /publish
 
-USER 1001
 ENTRYPOINT ["dotnet","MiniHelpDesk.Services.TicketManagement.dll"]

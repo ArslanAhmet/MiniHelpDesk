@@ -21,18 +21,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniHelpDesk.Services.Ticke
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registry", "Registry", "{701879EA-0B9E-45EE-A552-3AD2152AF3F1}"
 	ProjectSection(SolutionItems) = preProject
-		BuildingBlocks\Registry\docker-compose.yml = BuildingBlocks\Registry\docker-compose.yml
+		BuildingBlocks\Infra\Registry\docker-compose.yml = BuildingBlocks\Infra\Registry\docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamCity", "TeamCity", "{10CE9F15-5D4A-4E80-9355-A8C0C942404E}"
 	ProjectSection(SolutionItems) = preProject
-		BuildingBlocks\TeamCity\docker-compose.yml = BuildingBlocks\TeamCity\docker-compose.yml
+		BuildingBlocks\Infra\TeamCity\docker-compose.yml = BuildingBlocks\Infra\TeamCity\docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED199D74-A29B-445B-BADC-B74BF98E0C55}"

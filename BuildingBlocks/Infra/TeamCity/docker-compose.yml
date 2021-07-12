@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
  teamcity:
-  image: jetbrains/teamcity-server
+  image: jetbrains/teamcity-server:2019.1
   volumes:
    - teamcity-server-datadir:/data/teamcity-server/datadir
    - teamcity-server-logs:/opt/teamcity/logs
@@ -10,7 +10,7 @@ services:
    - "8111:8111" 
 
  teamcity-agent:
-  image: jetbrains/teamcity-agent
+  image: jetbrains/teamcity-agent:2019.1
   environment:
    SERVER_URL: http://teamcity:8111
   volumes:
