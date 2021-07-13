@@ -8,9 +8,10 @@ services:
    - teamcity-server-logs:/opt/teamcity/logs
   ports:
    - "8111:8111" 
-
+  restart: unless-stopped
  teamcity-agent:
   image: jetbrains/teamcity-agent:2019.1
+  restart: unless-stopped
   environment:
    SERVER_URL: http://teamcity:8111
   volumes:

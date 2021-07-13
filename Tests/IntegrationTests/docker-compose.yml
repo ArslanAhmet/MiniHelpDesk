@@ -1,0 +1,19 @@
+version: "3.7"
+#  image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-10}
+services:
+ minihelpdesk:
+  image: ledexregistry:55000/minihelpdesk:ci-3
+  ports: 
+  - "8080:80"
+ mail:
+  image: mailhog/mailhog
+  #ports: 
+    #- "8025:8025"
+ integration:
+  image:  ledexregistry:55000/minihelpdesk:integration-3
+# integration test must be compiled for every run
+  build: .
+  environment: 
+   - TEAMCITY_PROJECT_NAME
+#volumes:
+# pgdata:
