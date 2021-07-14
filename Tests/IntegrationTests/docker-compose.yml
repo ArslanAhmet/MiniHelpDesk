@@ -11,7 +11,7 @@ services:
     #- "8025:8025"
  integration:
 # 10 default value
-  image:  ledexregistry:55000/minihelpdesk:integration-${BUILD_NUMBER-10}
+  image:  ledexregistry:55000/integration:ci-${BUILD_NUMBER-10}
 # integration test must be compiled for every run
   build: .
   environment: 
