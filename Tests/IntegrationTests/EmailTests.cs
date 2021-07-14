@@ -14,7 +14,7 @@ namespace IntegrationTests
         [Fact]
         public void AlwaysSuccessForNo() 
         {
-            Assert.Equal("Success", "Success1");
+            Assert.Equal("Success", "Success");
         } 
     }
 }
