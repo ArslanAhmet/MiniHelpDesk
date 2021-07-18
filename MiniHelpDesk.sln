@@ -42,6 +42,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "Tests\UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "Tests\IntegrationTests\IntegrationTests.csproj", "{181AAB85-95BC-4495-BC9F-E3C558A95766}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker Swarm Vizard", "Docker Swarm Vizard", "{533C6138-68E8-4671-B586-0B41F449785E}"
+	ProjectSection(SolutionItems) = preProject
+		viz.yml = viz.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13
@@ -95,6 +100,7 @@ Global
 		{10CE9F15-5D4A-4E80-9355-A8C0C942404E} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
 		{DDC4D822-B518-424C-9446-2651A2835C65} = {ED199D74-A29B-445B-BADC-B74BF98E0C55}
 		{181AAB85-95BC-4495-BC9F-E3C558A95766} = {ED199D74-A29B-445B-BADC-B74BF98E0C55}
+		{533C6138-68E8-4671-B586-0B41F449785E} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E25A7C03-660F-4E9F-AB99-61391AD9C0AB}

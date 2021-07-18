@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: minihelpdesk
+ labels:
+ app : api
+spec:
+ containers: 
+  - name: ticketmanagement-api
+    image: ledexregistry:55000/minihelpdesk:ci-10
+    ports:
+     - containerport: 8080
