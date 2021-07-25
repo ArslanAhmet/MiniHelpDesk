@@ -7,6 +7,9 @@ WORKDIR /minihelpdesk
 COPY ["Services/MiniHelpDesk.Services.TicketManagement/MiniHelpDesk.Services.TicketManagement.csproj", "Services/MiniHelpDesk.Services.TicketManagement/"]
 RUN dotnet restore "Services/MiniHelpDesk.Services.TicketManagement/MiniHelpDesk.Services.TicketManagement.csproj"
 
+COPY ["BuildingBlocks/Common/Common.csproj", "BuildingBlocks/Common/"]
+RUN dotnet restore "BuildingBlocks/Common/Common.csproj"
+
 #RUN ls -alR
 
 COPY ["Tests/UnitTests/UnitTests.csproj", "UnitTests/"]
