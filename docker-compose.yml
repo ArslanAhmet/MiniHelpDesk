@@ -4,9 +4,9 @@ services:
  minihelpdesk:
   build:
    context: .
-  image: ledexsoftware/minihelpdesk:build
+  image: ledexregistry:55000/minihelpdesk:ci-3
   ports: 
-   - "8080:80"
+   - "8080:8080"
  mail:
   image: mailhog/mailhog
   ports: 

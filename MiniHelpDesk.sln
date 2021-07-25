@@ -47,6 +47,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker Swarm Vizard", "Dock
 		viz.yml = viz.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{4F017996-3B57-4A3B-951A-1BA9EB1ABF68}"
+	ProjectSection(SolutionItems) = preProject
+		pod.yml = pod.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pods", "Pods", "{4D137AF4-1069-40FE-B8D5-2E1CAF0E60EA}"
+	ProjectSection(SolutionItems) = preProject
+		pod.yml = pod.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{99C6CEBC-4280-4C4E-BDBA-9367D16CCA7D}"
+	ProjectSection(SolutionItems) = preProject
+		svc-nodeport.yml = svc-nodeport.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13
@@ -101,6 +116,9 @@ Global
 		{DDC4D822-B518-424C-9446-2651A2835C65} = {ED199D74-A29B-445B-BADC-B74BF98E0C55}
 		{181AAB85-95BC-4495-BC9F-E3C558A95766} = {ED199D74-A29B-445B-BADC-B74BF98E0C55}
 		{533C6138-68E8-4671-B586-0B41F449785E} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
+		{4F017996-3B57-4A3B-951A-1BA9EB1ABF68} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
+		{4D137AF4-1069-40FE-B8D5-2E1CAF0E60EA} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
+		{99C6CEBC-4280-4C4E-BDBA-9367D16CCA7D} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E25A7C03-660F-4E9F-AB99-61391AD9C0AB}
