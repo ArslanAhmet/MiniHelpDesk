@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -148,6 +149,10 @@ namespace MiniHelpDesk.Services.TicketManagement
                 endpoints.MapDefaultHealthChecks();
                 endpoints.MapControllers();
             });
+
+            var redirectRootToSwagger = new RewriteOptions()
+                .AddRedirect("^$", "swagger");
+            app.UseRewriter(redirectRootToSwagger);
         }
         private string GetDecryptedString(string key)
         {
