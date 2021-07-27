@@ -2,7 +2,7 @@ version: "3.7"
 #  image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-10}
 services:
  minihelpdesk:
-  image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-10}
+  image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-11}
   ports: 
   - "8080:80"
  mail:
@@ -11,7 +11,7 @@ services:
     #- "8025:8025"
  integration:
 # 10 default value
-  image:  ledexregistry:55000/integration:ci-${BUILD_NUMBER-10}
+  image:  ledexregistry:55000/integration:ci-${BUILD_NUMBER-11}
 # integration test must be compiled for every run
   build: .
   environment: 
