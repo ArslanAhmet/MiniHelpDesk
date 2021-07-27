@@ -150,9 +150,9 @@ namespace MiniHelpDesk.Services.TicketManagement
                 endpoints.MapControllers();
             });
 
-            var redirectRootToSwagger = new RewriteOptions()
-                .AddRedirect("^$", "swagger");
-            app.UseRewriter(redirectRootToSwagger);
+            //var redirectRootToSwagger = new RewriteOptions()
+            //    .AddRedirect("^$", "swagger");
+            //app.UseRewriter(redirectRootToSwagger);
         }
         private string GetDecryptedString(string key)
         {
