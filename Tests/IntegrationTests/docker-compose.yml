@@ -12,6 +12,7 @@ services:
  integration:
 # 10 default value
   image:  ledexregistry:55000/minihelpdesk:integration-${BUILD_NUMBER-11}
+
 # integration test must be compiled for every run
   build: .
   environment: 

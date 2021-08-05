@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: ticketmanagement-api
-      image: ledexregistry:55000/minihelpdesk:ci-3
+      image: ledexregistry:55000/minihelpdesk:ci-19
       ports:
         - containerPort: 8080
 #apiVersion: v1

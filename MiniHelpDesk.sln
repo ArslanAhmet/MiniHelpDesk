@@ -48,9 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker Swarm Vizard", "Dock
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{4F017996-3B57-4A3B-951A-1BA9EB1ABF68}"
-	ProjectSection(SolutionItems) = preProject
-		pod.yml = pod.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pods", "Pods", "{4D137AF4-1069-40FE-B8D5-2E1CAF0E60EA}"
 	ProjectSection(SolutionItems) = preProject

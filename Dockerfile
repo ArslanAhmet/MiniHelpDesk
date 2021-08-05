@@ -2,6 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 
 WORKDIR /minihelpdesk
+EXPOSE 80
+EXPOSE 443
 
 #restore
 COPY ["Services/MiniHelpDesk.Services.TicketManagement/MiniHelpDesk.Services.TicketManagement.csproj", "Services/MiniHelpDesk.Services.TicketManagement/"]
