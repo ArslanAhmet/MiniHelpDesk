@@ -94,7 +94,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         [HttpGet("{id}", Name = "GetTicket")]
         public async Task<IActionResult> GetTicketAsync(int Id, [FromQuery] string fields)
         {
-            return Ok();
+            return Ok(System.Environment.MachineName);
 
             if (!_typeHelperService.TypeHasProperties<TicketDto>(fields))
             {

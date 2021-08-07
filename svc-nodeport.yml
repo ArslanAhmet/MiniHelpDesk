@@ -5,11 +5,11 @@ metadata:
 spec:
   type: NodePort
   ports:
-  #port thats cluster listen
+  #port thats clusterIP listen()
   - port: 8080
   #port thats application listen in container
     targetPort: 80
-#port thats nodes listen that can be rached from outside
+#port thats nodes listen that can be rached from outside, http://localhost:31111/api/tickets/3
     nodePort: 31111
     protocol: TCP
   selector:
