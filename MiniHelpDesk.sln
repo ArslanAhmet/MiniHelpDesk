@@ -59,6 +59,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{99
 		svc-nodeport.yml = svc-nodeport.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{E0383D54-2C93-4080-A4C1-0E1C96BCF345}"
+	ProjectSection(SolutionItems) = preProject
+		demodeploy.yml = demodeploy.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadBalancer", "LoadBalancer", "{93D89FEE-CD75-469E-9538-B9D312274EF0}"
+	ProjectSection(SolutionItems) = preProject
+		minihelpdesk-loadbalancer.yml = minihelpdesk-loadbalancer.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BuildingBlocks\Shared\Shared.projitems*{78a09cab-129d-44eb-8c07-99c643a9b99d}*SharedItemsImports = 13
@@ -116,6 +126,8 @@ Global
 		{4F017996-3B57-4A3B-951A-1BA9EB1ABF68} = {E8B2FD48-0A25-4E5A-A572-58AA9F3FBACC}
 		{4D137AF4-1069-40FE-B8D5-2E1CAF0E60EA} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
 		{99C6CEBC-4280-4C4E-BDBA-9367D16CCA7D} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
+		{E0383D54-2C93-4080-A4C1-0E1C96BCF345} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
+		{93D89FEE-CD75-469E-9538-B9D312274EF0} = {4F017996-3B57-4A3B-951A-1BA9EB1ABF68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E25A7C03-660F-4E9F-AB99-61391AD9C0AB}

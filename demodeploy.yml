@@ -25,6 +25,6 @@ spec:
       containers:
       - name: minihelpdesk-pod
         image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-11}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
