@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: minihelpdesk-pod
-        image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-11}
+        image: ledexregistry:55000/minihelpdesk:ci-${MINIHELPDESK_BUILD_NUMBER-26}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
