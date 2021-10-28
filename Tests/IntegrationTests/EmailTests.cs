@@ -3,18 +3,19 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Xunit;
 
 namespace IntegrationTests
 {
+    [TestClass]
     public class EmailTests 
     {
-        [Fact]
+        [TestMethod]
         public void AlwaysSuccessForNo() 
         {
-            Assert.Equal("Success", "Success");
+            Assert.AreEqual("Success", "Success");
         } 
     }
 }

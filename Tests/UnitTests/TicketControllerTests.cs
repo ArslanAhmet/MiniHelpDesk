@@ -1,13 +1,14 @@
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
 {
+    [TestClass]
     public class TicketControllerTests
     {
-        [Fact]
+        [TestMethod]
         public void GetSingleTicket_ValidId_BringTicket()
         {
-            Assert.Equal("mail", "mail1");
+            Assert.AreEqual("mail", "mail1");
         }
     }
 }
