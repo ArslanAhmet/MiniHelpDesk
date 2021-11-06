@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
 using MiniHelpDesk.Services.TicketManagement.Core.Entities;
 using MiniHelpDesk.Services.TicketManagement.Core.Interfaces;
 using MiniHelpDesk.Services.TicketManagement.Core.Models.Tickets;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Extensions;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Helpers;
+using Npgsql;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,71 +15,73 @@ namespace MiniHelpDesk.Services.TicketManagement.Infrastructure.Data
 {
     public class TicketRepository : ITicketRepository
     {
-        private TicketContext _context;
-        IPropertyMappingService _propertyMappingService;
-        
-        public TicketRepository(TicketContext context, 
-            IPropertyMappingService propertyMappingService)
+        private string _connectionString;
+
+        internal IDbConnection Connection
         {
-            _context = context;
-            _propertyMappingService = propertyMappingService;
+            get
+            {
+                return new NpgsqlConnection(_connectionString);
+            }
+        }
+        public TicketRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public async Task<PagedList<Ticket>> GetTickets(TicketsResourceParameters ticketsResourceParameters)
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+                
+                var collection = await dbConnection.QueryAsync<Ticket>("SELECT * FROM public.\"Tickets\"") ;
+
+                PagedList<Ticket> pagedList = new PagedList<Ticket>(collection.ToList(), 
+                    collection.Count(), 
+                    ticketsResourceParameters.PageNumber, 
+                    ticketsResourceParameters.PageSize);
+                 
+                //pagedList.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                
+                return pagedList;
+            }
+
             
         }
 
-        #region Ticket
-        public async Task<PagedList<Ticket>> GetTickets(TicketsResourceParameters helpDeskTasksResourceParameters)
+        public Task<Ticket> GetTicketAsync(int id)
         {
-            var collectionBeforePaging = _context.Tickets
-                .ApplySort(helpDeskTasksResourceParameters.OrderBy, _propertyMappingService.GetPropertyMapping<TicketDto, Ticket>());
-
-            if (!string.IsNullOrEmpty(helpDeskTasksResourceParameters.SearchQuery))
-            {
-                var searchQueryToWhereClause = helpDeskTasksResourceParameters.SearchQuery.Trim().ToLowerInvariant();
-
-                collectionBeforePaging = collectionBeforePaging.Where(c =>
-                c.Name.ToLowerInvariant().Contains(searchQueryToWhereClause)
-               || c.Description.ToLowerInvariant().Contains(searchQueryToWhereClause)
-                );
-            }
-
-
-            return await PagedList<Ticket>.Create(collectionBeforePaging
-                , helpDeskTasksResourceParameters.PageNumber
-                , helpDeskTasksResourceParameters.PageSize);
+            throw new NotImplementedException();
         }
-        public void AddTicket(Ticket helpDeskTask)
+
+        public void AddTicket(Ticket ticket)
         {
-            _context.Tickets.Add(helpDeskTask);
+            throw new NotImplementedException();
         }
 
-        public bool TicketExists(int Id)
+        public Task<Ticket> CheckTicketExists(string id)
         {
-            return _context.Tickets.Any(a => a.Id.CompareTo(Id) == 0);
+            throw new NotImplementedException();
         }
-        public void UpdateTicket(Ticket helpDeskTask)
+
+        
+
+        
+
+        public Task<bool> SaveChangesAsync()
         {
-            // no code in this implementation
+            throw new NotImplementedException();
         }
-         
 
-        public async Task<Ticket> GetTicketAsync(int Id)
+        public bool TicketExists(int id)
         {
-            return await _context.Tickets
-                .FirstOrDefaultAsync(a =>  Id.CompareTo(a.Id) == 0);
+            throw new NotImplementedException();
         }
 
-        public async Task<Ticket> CheckTicketExists(string helpDeskTaskNo)
+        public void UpdateTicket(Ticket ticket)
         {
-            return await _context.Tickets
-                .FirstOrDefaultAsync(k => k.Name == helpDeskTaskNo );
+            throw new NotImplementedException();
         }
-        public async Task<bool> SaveChangesAsync()
-        {    
-            return (await _context.SaveChangesAsync() > 0);   
-        }
-
-         
-
-        #endregion
     }
 }

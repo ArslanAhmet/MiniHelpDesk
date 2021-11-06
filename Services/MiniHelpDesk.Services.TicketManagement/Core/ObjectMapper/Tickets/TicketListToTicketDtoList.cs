@@ -18,7 +18,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets
                     new TicketDto
                     {
                         Id = entity.Id,
-                        Name = entity.Name.Trim(),
+                        //Name = entity.Name.Trim(),
                         Description = entity.Description?.Trim()
                     });
             }

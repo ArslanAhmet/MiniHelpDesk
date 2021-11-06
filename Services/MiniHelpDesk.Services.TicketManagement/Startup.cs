@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,8 +41,10 @@ namespace MiniHelpDesk.Services.TicketManagement
             //string encryptedVal1 = EncryptConnectionString("AppSettings:HelpDeskDB");
             var helpDeskContextConnString = GetDecryptedString("AppSettings:HelpDeskDB");
 
-            services.AddEntityFrameworkNpgsql()
-               .AddDbContext<TicketContext>(o => o.UseNpgsql(helpDeskContextConnString));
+            //services.AddEntityFrameworkNpgsql()
+            //   .AddDbContext<TicketContext>(o => o.UseNpgsql(helpDeskContextConnString));
+            
+            services.AddSingleton<ITicketRepository>(new TicketRepository(helpDeskContextConnString));
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -89,7 +91,7 @@ namespace MiniHelpDesk.Services.TicketManagement
                 return new UrlHelper(actionContext);
             });
 
-            services.AddScoped<ITicketRepository, TicketRepository>();
+            //services.AddScoped<ITicketRepository, TicketRepositoryEF>();
             
             Mappings(services);
 

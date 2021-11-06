@@ -8,7 +8,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets
     {
         public Ticket Map(TicketForUpdateDto source, Ticket destination)
         {
-            destination.Name = source.Name.Trim();
+            //destination.Name = source.Name.Trim();
             destination.Description = source.Description?.Trim();
             return destination;
         }

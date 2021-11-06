@@ -10,7 +10,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets
         {
             var entity = new Ticket
             {
-                Name = input.Name.Trim(),
+                //Name = input.Name.Trim(),
                 Description = input.Description?.Trim()
             };
             return entity;
