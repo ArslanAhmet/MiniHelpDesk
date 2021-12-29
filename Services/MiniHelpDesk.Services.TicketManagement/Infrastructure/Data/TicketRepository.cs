@@ -34,15 +34,20 @@ namespace MiniHelpDesk.Services.TicketManagement.Infrastructure.Data
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                
-                var collection = await dbConnection.QueryAsync<Ticket>("SELECT * FROM public.\"Tickets\"") ;
+                var collection = await dbConnection
+                    .QueryAsync<Ticket>("SELECT *, count(\"Id\") OVER() AS FullCount FROM public.\"Tickets\" ORDER BY @OrderBy LIMIT  @PageSize offset @Offset", 
+                    new {
+                        OrderBy = ticketsResourceParameters.OrderBy,
+                        PageSize = ticketsResourceParameters.PageSize, 
+                        Offset = (ticketsResourceParameters.PageNumber - 1) * ticketsResourceParameters.PageSize 
+                    }) ;
+
+                var fullCount = collection.Count() == 0 ? 0 : collection.FirstOrDefault().FullCount;
 
                 PagedList<Ticket> pagedList = new PagedList<Ticket>(collection.ToList(), 
-                    collection.Count(), 
+                    fullCount, 
                     ticketsResourceParameters.PageNumber, 
                     ticketsResourceParameters.PageSize);
-                 
-                //pagedList.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
                 
                 return pagedList;
             }

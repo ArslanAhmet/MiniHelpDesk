@@ -6,13 +6,14 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.Entities
     {
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
+        public int FullCount { get; set; }
         //public int AssigneeID { get; set; }
         //public int BrandID { get; set; }
         //public string Channel { get; set; }
         //public string Name { get; set; }
-        
+
         //public DateTime DueDate { get; set; }
-        
+
         //public int OrganizationID { get; set; }
         //public int Priority { get; set; }
         //public int RequesterID { get; set; }

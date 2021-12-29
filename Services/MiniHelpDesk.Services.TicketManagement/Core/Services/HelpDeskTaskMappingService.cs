@@ -13,7 +13,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.Services
             new Dictionary<string, PropertyMappingValue>(StringComparer.OrdinalIgnoreCase)
             {
                 { "Id", new PropertyMappingValue( new List<string>() { "Id" } ) },
-                { "Name", new PropertyMappingValue( new List<string>() { "Name" } ) }
+                { "Description", new PropertyMappingValue( new List<string>() { "Description" } ) }
             };
 
         private IList<IPropertyMapping> propertyMappings = new List<IPropertyMapping>();

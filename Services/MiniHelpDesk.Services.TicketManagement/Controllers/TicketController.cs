@@ -56,15 +56,11 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         [HttpGet(Name = "GetTickets")]
         public async Task<IActionResult> GetTicketsAsync([FromQuery]TicketsResourceParameters ticketsResourceParameters)
         {
-            //if (!_propertyMappingService.ValidMappingExistsFor<TicketDto, Ticket>(ticketsResourceParameters.OrderBy))
-            //{
-            //    return BadRequest();
-            //}
 
-            //if (!_typeHelperService.TypeHasProperties<TicketDto>(ticketsResourceParameters.Fields))
-            //{
-            //    return BadRequest();
-            //}
+            if (!_typeHelperService.TypeHasProperties<TicketDto>(ticketsResourceParameters.Fields))
+            {
+                return BadRequest();
+            }
 
             var ticketsFromRepo = await _ticketRepository.GetTickets(ticketsResourceParameters);
 
@@ -80,13 +76,13 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
             {
                 WriteIndented = false
             });
-            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationData));
+            
             Response.Headers.Add("T-Pagination", jsonData);
 
             var tickets = _ticketDtoListMapper.Map(ticketsFromRepo);
 
             return Ok(tickets.ShapeData(ticketsResourceParameters.Fields));//.net 5 'te expando object desteği geliyor
-            //return Ok(tickets);
+
         }
 
         [HttpGet("{id}", Name = "GetTicket")]
