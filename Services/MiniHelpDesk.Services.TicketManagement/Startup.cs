@@ -13,7 +13,9 @@ using MiniHelpDesk.BuildingBlocks.Shared;
 using MiniHelpDesk.Services.TicketManagement.Core;
 using MiniHelpDesk.Services.TicketManagement.Core.Entities;
 using MiniHelpDesk.Services.TicketManagement.Core.Interfaces;
+using MiniHelpDesk.Services.TicketManagement.Core.Models.Organizations;
 using MiniHelpDesk.Services.TicketManagement.Core.Models.Tickets;
+using MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Organizations;
 using MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets;
 using MiniHelpDesk.Services.TicketManagement.Core.Security;
 using MiniHelpDesk.Services.TicketManagement.Core.Services;
@@ -38,13 +40,18 @@ namespace MiniHelpDesk.Services.TicketManagement
         {
             services.AddCors();
 
-            //string encryptedVal1 = EncryptConnectionString("AppSettings:HelpDeskDB");
             var helpDeskContextConnString = GetDecryptedString("AppSettings:HelpDeskDB");
 
-            //services.AddEntityFrameworkNpgsql()
-            //   .AddDbContext<TicketContext>(o => o.UseNpgsql(helpDeskContextConnString));
-            
-            services.AddSingleton<ITicketRepository>(new TicketRepository(helpDeskContextConnString));
+            //services.AddSingleton<ITicketRepository>(new TicketRepository(helpDeskContextConnString));
+            services.AddScoped<ITicketRepository, TicketRepository>(implementationFactory =>
+            {
+                return new TicketRepository(helpDeskContextConnString);
+            });
+
+            services.AddScoped<IOrganizationRepository, OrganizationRepository>(implementationFactory =>
+            {
+                return new OrganizationRepository(helpDeskContextConnString);
+            });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -91,7 +98,6 @@ namespace MiniHelpDesk.Services.TicketManagement
                 return new UrlHelper(actionContext);
             });
 
-            //services.AddScoped<ITicketRepository, TicketRepositoryEF>();
             
             Mappings(services);
 
@@ -102,10 +108,19 @@ namespace MiniHelpDesk.Services.TicketManagement
 
         private static void Mappings(IServiceCollection services)
         {
+            #region Organizations
+            services.AddTransient<IDoubleMapper<OrganizationForUpdateDto, Organization>, OrganizationToOrganizationForUpdateDto>();
+            services.AddTransient<IMapper<OrganizationForCreationDto, Organization>, OrganizationForCreationToOrganization>();
+            services.AddTransient<IMapper<IEnumerable<Organization>, IEnumerable<OrganizationDto>>, OrganizationListToOrganizationDtoList>();
+            services.AddTransient<IMapper<Organization, OrganizationDto>, OrganizationToOrganizationDto>();
+            #endregion
+
+            #region Tickets
             services.AddTransient<IDoubleMapper<TicketForUpdateDto, Ticket>, TicketToTicketForUpdateDto>();
             services.AddTransient<IMapper<TicketForCreationDto, Ticket>, TicketForCreationToTicket>();
             services.AddTransient<IMapper<IEnumerable<Ticket>, IEnumerable<TicketDto>>, TicketListToTicketDtoList>();
-            services.AddTransient<IMapper<Ticket, TicketDto>, TicketToTicketDto>();
+            services.AddTransient<IMapper<Ticket, TicketDto>, TicketToTicketDto>(); 
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

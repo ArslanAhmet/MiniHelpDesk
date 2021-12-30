@@ -11,9 +11,6 @@ using MiniHelpDesk.Services.TicketManagement.Core.Models.Tickets;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Helpers;
 using System.Text.Json;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Extensions;
-using MailKit.Security;
-using MimeKit;
-using MailKit.Net.Smtp;
 
 namespace MiniHelpDesk.Services.TicketManagement.Controllers
 {
