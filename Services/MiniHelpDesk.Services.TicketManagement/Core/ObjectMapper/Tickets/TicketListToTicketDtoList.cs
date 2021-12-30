@@ -18,8 +18,19 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets
                     new TicketDto
                     {
                         Id = entity.Id,
-                        //Name = entity.Name.Trim(),
-                        Description = entity.Description?.Trim()
+                        Description = entity.Description?.Trim(),
+                        Subject = entity.Subject,
+                        RequesterID = entity.RequesterID,
+                        AssigneeID = entity.AssigneeID,
+                        Priority = entity.Priority,
+                        OrganizationID = entity.OrganizationID,
+                        SubmitterID = entity.SubmitterID,
+                        Channel = entity.Channel,
+                        BrandID = entity.BrandID,
+                        TicketTypeID = entity.TicketTypeID,
+                        Satisfaction = entity.Satisfaction,
+                        DueDate = entity.DueDate,
+                        SolvedDate = entity.SolvedDate
                     });
             }
             return entityDtos;

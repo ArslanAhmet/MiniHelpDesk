@@ -1,12 +1,8 @@
 ﻿using Dapper;
 using MiniHelpDesk.Services.TicketManagement.Core.Entities;
-using MiniHelpDesk.Services.TicketManagement.Core.Interfaces;
-using MiniHelpDesk.Services.TicketManagement.Core.Models.Tickets;
-using MiniHelpDesk.Services.TicketManagement.Infrastructure.Extensions;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Helpers;
 using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,43 +46,78 @@ namespace MiniHelpDesk.Services.TicketManagement.Infrastructure.Data
                     ticketsResourceParameters.PageSize);
                 
                 return pagedList;
-            }
-
-            
+            }            
         }
 
-        public Task<Ticket> GetTicketAsync(int id)
+        public async Task<Ticket> GetTicketAsync(int id)
         {
-            throw new NotImplementedException();
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+
+                var records = await dbConnection
+                    .QueryAsync<Ticket>("select * from public.\"Tickets\"  where \"Id\"= @id and \"IsDeleted\" = false", 
+                    new { id =  id })
+                    .ConfigureAwait(false);
+
+                return records.SingleOrDefault();
+            }
         }
 
         public void AddTicket(Ticket ticket)
         {
-            throw new NotImplementedException();
-        }
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
 
-        public Task<Ticket> CheckTicketExists(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        
-
-        
-
-        public Task<bool> SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TicketExists(int id)
-        {
-            throw new NotImplementedException();
+                ticket.Created = DateTime.Now;
+                ticket.Id = dbConnection.ExecuteScalar<int>("insert into public.\"Tickets\" " +
+                    "(\"Description\",\"IsDeleted\",\"Created\"," +
+                    "\"Subject\" , \"RequesterID\",\"AssigneeID\"," +
+                    "\"Priority\" , \"OrganizationID\",\"SubmitterID\", " +
+                    "\"Channel\" , \"BrandID\",\"TicketTypeID\", " +
+                    "\"Satisfaction\" , \"DueDate\",\"SolvedDate\" " +
+                    ") " +
+                    "values(:Description, :IsDeleted, :Created, :Subject, :RequesterID, :AssigneeID," +
+                    ":Priority, :OrganizationID, :SubmitterID,:Channel, :BrandID, :TicketTypeID," +
+                    " :Satisfaction, :DueDate, :SolvedDate) RETURNING \"Id\" ", ticket);
+                
+            }
         }
 
         public void UpdateTicket(Ticket ticket)
         {
-            throw new NotImplementedException();
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+
+                dbConnection.Execute("UPDATE \"Tickets\" Set" +
+                    " \"Description\" = @Description, \"IsDeleted\" = @IsDeleted, \"Modified\" = @Modified ," +
+                    " \"Subject\" = @Subject, \"RequesterID\" = @RequesterID, \"AssigneeID\" = @AssigneeID ," +
+                    " \"Priority\" = @Priority, \"OrganizationID\" = @OrganizationID, \"SubmitterID\" = @SubmitterID ," +
+                    " \"Channel\" = @Channel, \"BrandID\" = @BrandID, \"TicketTypeID\" = @TicketTypeID ," +
+                    " \"Satisfaction\" = @Satisfaction, \"DueDate\" = @DueDate, \"SolvedDate\" = @SolvedDate " +
+                    "where \"Id\"= @id ",
+                 new
+                 {
+                     Description = ticket.Description,
+                     IsDeleted = ticket.IsDeleted,
+                     Modified = DateTime.Now,
+                     Subject = ticket.Subject,
+                     RequesterID = ticket.RequesterID,
+                     AssigneeID = ticket.AssigneeID,
+                     Priority = ticket.Priority,
+                     OrganizationID = ticket.OrganizationID,
+                     SubmitterID = ticket.SubmitterID,
+                     Channel = ticket.Channel,
+                     BrandID = ticket.BrandID,
+                     TicketTypeID = ticket.TicketTypeID,
+                     Satisfaction = ticket.Satisfaction,
+                     DueDate = ticket.DueDate,
+                     SolvedDate = ticket.SolvedDate,
+                     id = ticket.Id
+                 });
+            }
         }
     }
 }

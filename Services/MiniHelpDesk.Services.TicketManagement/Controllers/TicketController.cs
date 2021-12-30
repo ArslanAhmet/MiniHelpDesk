@@ -23,7 +23,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
     {
         public ITicketRepository _ticketRepository;
         private IUrlHelper _urlHelper;
-        IPropertyMappingService _propertyMappingService;
         ITypeHelperService _typeHelperService;
         private ILogger<TicketController> _logger;
         IMapper<IEnumerable<Ticket>, IEnumerable<TicketDto>> _ticketDtoListMapper;
@@ -34,7 +33,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         public int MAIL_PORT { get; set; } = 1025;
         public TicketController(ITicketRepository ticketRepository,
             IUrlHelper urlHelper,
-            IPropertyMappingService propertyMappingService,
             ITypeHelperService typeHelperService,
             ILogger<TicketController> logger,
             IMapper<IEnumerable<Ticket>, IEnumerable<TicketDto>> ticketDtoListMapper,
@@ -44,7 +42,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         {
             _ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository)) ;
             _urlHelper = urlHelper  ?? throw new ArgumentNullException(nameof(urlHelper)) ;
-            _propertyMappingService = propertyMappingService ?? throw new ArgumentNullException(nameof(propertyMappingService)) ;
             _typeHelperService = typeHelperService ?? throw new ArgumentNullException(nameof(typeHelperService)) ;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger)) ;
             _ticketDtoListMapper = ticketDtoListMapper ?? throw new ArgumentNullException(nameof(ticketDtoListMapper));
@@ -88,9 +85,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
         [HttpGet("{id}", Name = "GetTicket")]
         public async Task<IActionResult> GetTicketAsync(int Id, [FromQuery] string fields)
         {
-            string rtVal = System.Environment.MachineName + " Date:" + DateTime.Now.ToString().ToLower(System.Globalization.CultureInfo.InvariantCulture);
-            return Ok(rtVal);
-
+            
             if (!_typeHelperService.TypeHasProperties<TicketDto>(fields))
             {
                 return BadRequest();
@@ -105,7 +100,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
             var ticketToReturn = _ticketDtoMapper.Map(ticketFromRepo);
 
             return Ok(ticketToReturn.ShapeData(fields));
-            //return Ok(ticketToReturn);
         }
 
 
@@ -117,10 +111,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
                 return BadRequest();
             }
 
-            //_logger.LogWarning($"{JsonConvert.SerializeObject(ticketForCreationDto)}");
-
-            
-
             _logger.LogWarning(" {CreateTicketObject}:", JsonSerializer.Serialize(ticketForCreationDto, ticketForCreationDto.GetType(), new JsonSerializerOptions
             {
                 WriteIndented = true
@@ -129,8 +119,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
             var ticketEntity = _ticketCreationMapper.Map(ticketForCreationDto);
 
             _ticketRepository.AddTicket(ticketEntity);
-
-            await _ticketRepository.SaveChangesAsync();
 
             var ticketToReturn = _ticketDtoMapper.Map(ticketEntity);
 
@@ -152,10 +140,8 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
 
             ticketEntity.IsDeleted = true;
             _ticketRepository.UpdateTicket(ticketEntity);
-            await _ticketRepository.SaveChangesAsync();
-
+            
             return NoContent();
-
         }
 
 
@@ -167,14 +153,10 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
                 return BadRequest();
             }
 
+
             var ticketFromRepo = await _ticketRepository.GetTicketAsync(id);
             if (ticketFromRepo == null)
             {
-                //var errorJSON = JsonConvert.SerializeObject(new
-                //{
-                //    errorMessage = $"HelpDesk Task does not exist : {id}"
-                //});
-
                 var errorJSON = JsonSerializer.Serialize($"Ticket Id does not exist : {id}", "".GetType(), new JsonSerializerOptions
                 {
                     WriteIndented = true
@@ -183,7 +165,6 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
                 return new UnprocessableEntityObjectResult(errorJSON);
             }
 
-            //_logger.LogWarning($"{JsonConvert.SerializeObject(ticketForUpdateDto)}");
             _logger.LogWarning(JsonSerializer.Serialize(ticketForUpdateDto, ticketForUpdateDto.GetType(), new JsonSerializerOptions
             {
                 WriteIndented = true
@@ -192,7 +173,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Controllers
             ticketFromRepo = _ticketToTicketForUpdateDtoMapper.Map(ticketForUpdateDto, ticketFromRepo);
 
             _ticketRepository.UpdateTicket(ticketFromRepo);
-            await _ticketRepository.SaveChangesAsync();
+            
 
             var updatedticket = _ticketDtoMapper.Map(ticketFromRepo);
 
