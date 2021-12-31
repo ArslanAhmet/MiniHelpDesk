@@ -10,6 +10,5 @@ namespace MiniHelpDesk.Services.TicketManagement.Infrastructure.Data
         Task<Organization> GetOrganizationAsync(int id);
         void AddOrganization(Organization organization);
         void UpdateOrganization(Organization organization);
-
     }
 }

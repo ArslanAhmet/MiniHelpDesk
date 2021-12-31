@@ -14,8 +14,10 @@ using MiniHelpDesk.Services.TicketManagement.Core;
 using MiniHelpDesk.Services.TicketManagement.Core.Entities;
 using MiniHelpDesk.Services.TicketManagement.Core.Interfaces;
 using MiniHelpDesk.Services.TicketManagement.Core.Models.Organizations;
+using MiniHelpDesk.Services.TicketManagement.Core.Models.Persons;
 using MiniHelpDesk.Services.TicketManagement.Core.Models.Tickets;
 using MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Organizations;
+using MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Persons;
 using MiniHelpDesk.Services.TicketManagement.Core.ObjectMapper.Tickets;
 using MiniHelpDesk.Services.TicketManagement.Core.Security;
 using MiniHelpDesk.Services.TicketManagement.Core.Services;
@@ -51,6 +53,11 @@ namespace MiniHelpDesk.Services.TicketManagement
             services.AddScoped<IOrganizationRepository, OrganizationRepository>(implementationFactory =>
             {
                 return new OrganizationRepository(helpDeskContextConnString);
+            });
+
+            services.AddScoped<IPersonRepository, PersonRepository>(implementationFactory =>
+            {
+                return new PersonRepository(helpDeskContextConnString);
             });
 
             services.Configure<ApiBehaviorOptions>(options =>
@@ -108,6 +115,13 @@ namespace MiniHelpDesk.Services.TicketManagement
 
         private static void Mappings(IServiceCollection services)
         {
+            #region Persons
+            services.AddTransient<IDoubleMapper<PersonForUpdateDto, Person>, PersonToPersonForUpdateDto>();
+            services.AddTransient<IMapper<PersonForCreationDto, Person>, PersonForCreationToPerson>();
+            services.AddTransient<IMapper<IEnumerable<Person>, IEnumerable<PersonDto>>, PersonListToPersonDtoList>();
+            services.AddTransient<IMapper<Person, PersonDto>, PersonToPersonDto>();
+            #endregion
+
             #region Organizations
             services.AddTransient<IDoubleMapper<OrganizationForUpdateDto, Organization>, OrganizationToOrganizationForUpdateDto>();
             services.AddTransient<IMapper<OrganizationForCreationDto, Organization>, OrganizationForCreationToOrganization>();

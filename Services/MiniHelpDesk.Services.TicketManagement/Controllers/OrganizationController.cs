@@ -12,7 +12,7 @@ using System.Text.Json;
 using MiniHelpDesk.Services.TicketManagement.Infrastructure.Extensions;
 using MiniHelpDesk.Services.TicketManagement.Core.Models.Organizations;
 
-namespace MiniHelpDesk.Services.organizationManagement.Controllers
+namespace MiniHelpDesk.Services.TicketManagement.Controllers
 {
     [ApiController]
     [Route("api/organizations")]

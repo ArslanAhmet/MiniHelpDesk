@@ -5,8 +5,7 @@ namespace MiniHelpDesk.Services.TicketManagement.Core.Entities
     public class Ticket : BaseEntity
     {
         public int FullCount { get; set; }
-        public string Description { get; set; }
-        public bool IsDeleted { get; set; }                
+        public string Description { get; set; }  
         public string Subject { get; set; }
         public int RequesterID { get; set; }
         public int AssigneeID { get; set; }
